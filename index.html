@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bookshelf App</title>
+  
+  <!-- Bootstrap CSS Lokal -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  
+  <style>
+    .hero-header {
+      background: linear-gradient(rgba(112, 139, 178, 0.85), rgba(93, 126, 174, 0.85)), 
+                  url('bookshelf.jpeg') center/cover no-repeat;
+      color: white;
+      padding: 35px 20px;
+      border-radius: 0 0 20px 20px;
+    }
+    
+    .centered-container {
+      max-width: 750px;
+    }
+  </style>
+</head>
+<body class="bg-light">
+
+ <!-- HEADER BANNER -->
+  <header class="hero-header mb-4 shadow-sm text-center">
+    <div class="container centered-container">
+      <img src="bookshelf.jpeg" 
+           alt="Bookshelf" 
+           class="img-fluid mb-3 rounded shadow-sm" 
+           style="max-height: 110px; object-fit: cover;">
+      <h1 class="h3 fw-bold mb-1">📚 Bookshelf</h1>
+      <p class="small text-white-50 mb-0">Organize and manage your reading collection effortlessly</p>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="container centered-container pb-5">
+    
+    <section class="card border-0 shadow-sm mb-4">
+      <div class="card-header bg-white py-3 text-center border-bottom-0">
+        <h5 class="card-title mb-0 fw-bold text-primary">Add New Book</h5>
+      </div>
+      <div class="card-body p-4 pt-1">
+        <form id="inputBook">
+          <div class="mb-3">
+            <label for="inputBookTitle" class="form-label fw-semibold">Book Title</label>
+            <input type="text" class="form-control" id="inputBookTitle" placeholder="Enter book title..." required>
+          </div>
+          <div class="mb-3">
+            <label for="inputBookAuthor" class="form-label fw-semibold">Author</label>
+            <input type="text" class="form-control" id="inputBookAuthor" placeholder="Author name..." required>
+          </div>
+          <div class="mb-3">
+            <label for="inputBookYear" class="form-label fw-semibold">Year Published</label>
+            <input type="number" class="form-control" id="inputBookYear" placeholder="e.g. 2024" required>
+          </div>
+          <div class="form-check mb-4">
+            <input class="form-check-input" type="checkbox" id="inputBookIsComplete">
+            <label class="form-check-label" for="inputBookIsComplete">
+              Completed reading
+            </label>
+          </div>
+          <button id="bookSubmit" type="submit" class="btn btn-primary w-100 fw-semibold py-2">
+            Add Book to Shelf
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 2. Search Book Form -->
+    <section class="card border-0 shadow-sm mb-4">
+      <div class="card-body p-3">
+        <form id="searchBook">
+          <div class="input-group">
+            <input type="text" class="form-control" id="searchBookTitle" placeholder="Search book title...">
+            <button id="searchSubmit" type="submit" class="btn btn-outline-primary px-4">Search</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- 3. Unfinished Reading Table -->
+    <section class="card border-0 shadow-sm mb-4 overflow-hidden">
+      <div class="card-header bg-warning bg-opacity-20 text-dark py-3">
+        <h5 class="card-title mb-0 fw-bold">📖 Unfinished Reading</h5>
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+              <tr>
+                <th scope="col" class="ps-3">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Year</th>
+                <th scope="col" class="text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody id="incompleteBookshelfList">
+              <tr>
+                <td class="ps-3 fw-medium">The Stoic Philosophy</td>
+                <td class="text-secondary">Henry Manampiring</td>
+                <td>2019</td>
+                <td class="text-center">
+                  <div class="btn-group btn-group-sm" role="group">
+                    <button class="btn btn-success" title="Mark as Complete">Complete</button>
+                    <button class="btn btn-outline-danger" title="Delete Book">Delete</button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td class="ps-3 fw-medium">Atomic Habits</td>
+                <td class="text-secondary">James Clear</td>
+                <td>2018</td>
+                <td class="text-center">
+                  <div class="btn-group btn-group-sm" role="group">
+                    <button class="btn btn-success" title="Mark as Complete">Complete</button>
+                    <button class="btn btn-outline-danger" title="Delete Book">Delete</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer bg-white border-top text-muted small py-2 px-3">
+        Showing unfinished books
+      </div>
+    </section>
+
+    <!-- 4. Completed Reading Table -->
+    <section class="card border-0 shadow-sm overflow-hidden">
+      <div class="card-header bg-success bg-opacity-20 text-dark py-3">
+        <h5 class="card-title mb-0 fw-bold">✅ Completed Reading</h5>
+      </div>
+      <div class="card-body p-0">
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+              <tr>
+                <th scope="col" class="ps-3">Title</th>
+                <th scope="col">Author</th>
+                <th scope="col">Year</th>
+                <th scope="col" class="text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody id="completeBookshelfList">
+              <tr>
+                <td class="ps-3 fw-medium">The Rainbow Troops</td>
+                <td class="text-secondary">Andrea Hirata</td>
+                <td>2005</td>
+                <td class="text-center">
+                  <div class="btn-group btn-group-sm" role="group">
+                    <button class="btn btn-warning" title="Mark as Unfinished">Unfinished</button>
+                    <button class="btn btn-outline-danger" title="Delete Book">Delete</button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer bg-white border-top text-muted small py-2 px-3">
+        Showing completed books
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>
+<script src="js/main.js"></script>
